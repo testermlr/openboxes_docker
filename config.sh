@@ -87,19 +87,19 @@ configure_defaults() {
         exit 1
     fi
 
-    # Modificar openboxes-config.properties
-    if [ -f "openboxes/openboxes-config.properties" ]; then
-        cp openboxes/openboxes-config.properties openboxes/openboxes-config.properties.backup  # Hacer backup
+    # Modificar application.properties
+    if [ -f "openboxes/application.properties" ]; then
+        cp openboxes/application.properties openboxes/application.properties.backup  # Hacer backup
 
         # Cambiar grails.serverUrl
-        sed -i "s/grails.serverUrl=http:\/\/localhost:8080/grails.serverUrl=http:\/\/localhost:$TOMCAT_PORT/" openboxes/openboxes-config.properties
+        sed -i "s/grails.serverUrl=http:\/\/localhost:8080/grails.serverUrl=http:\/\/localhost:$TOMCAT_PORT/" openboxes/application.properties
 
         # Cambiar configuración de la base de datos
-        sed -i "s/dataSource.url=jdbc:mysql:\/\/localhost:3306\/openboxes/dataSource.url=jdbc:mysql:\/\/localhost:$MYSQL_PORT\/$MYSQL_DB_NAME/" openboxes/openboxes-config.properties
-        sed -i "s/dataSource.username=openboxes/dataSource.username=$MYSQL_USERNAME/" openboxes/openboxes-config.properties
-        sed -i "s/dataSource.password=password/dataSource.password=$MYSQL_PASSWORD/" openboxes/openboxes-config.properties
+        sed -i "s/dataSource.url=jdbc:mysql:\/\/localhost:3306\/openboxes/dataSource.url=jdbc:mysql:\/\/localhost:$MYSQL_PORT\/$MYSQL_DB_NAME/" openboxes/application.properties
+        sed -i "s/dataSource.username=openboxes/dataSource.username=$MYSQL_USERNAME/" openboxes/application.properties
+        sed -i "s/dataSource.password=password/dataSource.password=$MYSQL_PASSWORD/" openboxes/application.properties
     else
-        echo -e "${RED}No se encontró el archivo openboxes-config.properties. Asegúrate de haber clonado el repositorio openboxes.${NC}"
+        echo -e "${RED}No se encontró el archivo application.properties. Asegúrate de haber clonado el repositorio openboxes.${NC}"
         exit 1
     fi
 }
